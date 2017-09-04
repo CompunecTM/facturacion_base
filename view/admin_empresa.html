@@ -809,4 +809,24 @@
    </div>
 </form>
 
+<!--  Script que permite el autocomplete de la subcuenta  -->
+<script>
+//Autocomplete en el campo contabilidad
+   $("input[name='codsubcuenta']").each(function () {
+      $(this).autocomplete({
+           serviceUrl: 'index.php?page=admin_empresa',
+           paramName: 'subcuenta',
+           onSelect: function (data){
+               $(this).val(data.data);
+           }
+      });
+   });
+// Validar que se leccione una subcuenta
+   $('input[name="codsubcuenta"]').on("keydown", function(e) {
+      if(e.keyCode == 8 || e.keyCode == 46) {
+         $('input[name="codsubcuenta"]').val('');
+      }
+   });
+</script>
+
 {include="footer"}
